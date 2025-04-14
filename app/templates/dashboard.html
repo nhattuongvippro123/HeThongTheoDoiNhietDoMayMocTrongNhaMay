@@ -1,0 +1,28 @@
+<!-- app/templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giám sát Nhiệt độ</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; text-align: center; }
+        table { margin: auto; border-collapse: collapse; width: 80%; }
+        th, td { padding: 10px; border: 1px solid #ddd; }
+        .high { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🔥 Giám sát Nhiệt độ máy móc</h1>
+    <table>
+        <tr>
+            <th>Thời gian</th>
+            <th>Nhiệt độ (°C)</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{ d.timestamp }}</td>
+            <td class="{{ 'high' if d.temperature > 70 else '' }}">{{ "%.2f"|format(d.temperature) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
